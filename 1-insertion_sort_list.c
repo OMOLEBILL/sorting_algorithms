@@ -35,6 +35,7 @@ void insertion_sort_list(listint_t **list)
  *
  * @current: out of order integer supposed to be in @previous's place
  * @previous: out of order integer supposed to be in @current's place
+ * @list: The address of the headnode of the linked list
  *
  * Return: exchanges out of place with no extra memory
  */
