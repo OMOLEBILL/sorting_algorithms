@@ -10,24 +10,34 @@
 void insertion_sort_list(listint_t **list)
 {
 	listint_t *current = NULL, *previous = NULL, *next = NULL;
+	int count = 0;
 
 	current = *list;
 	if (current == NULL)
 		return;
 	while (current)
 	{
-		next  = current->next;
-		previous = current->prev;
-		while (previous)
+		current = current->next;
+		count++;
+	}
+	current = *list;
+	if (count >= 2)
+	{
+		while (current)
 		{
-			if (current->n < previous->n)
+			next  = current->next;
+			previous = current->prev;
+			while (previous)
 			{
-				swap(list, current, previous);
-				print_list(*list);
+				if (current->n < previous->n)
+				{
+					swap(list, current, previous);
+					print_list(*list);
+				}
+				previous = previous->prev;
 			}
-			previous = previous->prev;
+			current = next;
 		}
-		current = next;
 	}
 }
 
