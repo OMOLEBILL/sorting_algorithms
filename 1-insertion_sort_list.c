@@ -12,9 +12,9 @@ void insertion_sort_list(listint_t **list)
 	listint_t *current = NULL, *previous = NULL, *next = NULL;
 	int count = 0;
 
-	current = *list;
 	if (current == NULL)
 		return;
+	current = *list;
 	while (current)
 	{
 		current = current->next;
@@ -31,7 +31,7 @@ void insertion_sort_list(listint_t **list)
 			{
 				if (current->n < previous->n)
 				{
-					swap(list, current, previous);
+					swap(list, current, previous, count);
 					print_list(*list);
 				}
 				previous = previous->prev;
@@ -51,12 +51,13 @@ void insertion_sort_list(listint_t **list)
  *
  * Return: exchanges out of place with no extra memory
  */
-void swap(listint_t **list, listint_t *current, listint_t *previous)
+void swap(listint_t **list, listint_t *current, listint_t *previous, int count)
 {
 	if (previous->prev == NULL)
 	{
 		previous->next = current->next;
-		current->next->prev = previous;
+		if (count > 2)
+			current->next->prev = previous;
 		current->prev = previous->prev;
 		previous->prev = current;
 		current->next = previous;
